@@ -22,6 +22,7 @@ Resources:
   helloFromLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: simple-sam-hello
       Handler: src/handlers/hello-from-lambda.helloFromLambdaHandler
       Runtime: nodejs20.x
       Architectures:
@@ -32,3 +33,9 @@ Resources:
       Policies:
         # Give Lambda basic execution Permission to the helloFromLambda
         - AWSLambdaBasicExecutionRole
+      Events:
+        SimpleSam:
+          Type: Api
+          Properties:
+            Path: /simple-sam-hello
+            Method: GET        
